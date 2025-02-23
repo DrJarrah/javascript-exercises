@@ -12,17 +12,11 @@
 
 // Write your solution here
 
-function findDuplicates(numbers) {
-    let seen = new Set();
-    let duplicates = new Set();
-    
-    for (let num of numbers) {
-        if (seen.has(num)) {
-            duplicates.add(num);
-        } else {
-            seen.add(num); 
-        }
-    }
-    return Array.from(duplicates);
+function findDuplicates(arr) {
+    const count = arr.reduce((acc, num) => {
+        acc[num] = (acc[num] || 0) + 1;
+        return acc;
+    }, {});
+    return Object.keys(count).filter(num => count[num] > 1).map(Number);
 }
 module.exports = findDuplicates;
